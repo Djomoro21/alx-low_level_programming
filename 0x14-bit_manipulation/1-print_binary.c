@@ -1,75 +1,121 @@
 #include "main.h"
 
-void printLengthAndMask(unsigned long int number, int numLength, unsigned long int bitMask)
+/*
+ * Description - this is a version With Debug Option, this won't work
+ *		with the checker copy go to the readme and click
+ *		checker version that one will work with the checker.
+*/
+
+/**
+ * debug_1 - print debug statements
+ *
+ * @n: value of n
+ * @length: length of n
+ * @mask: mask of n
+ *
+ * Return: nothing
+*/
+void debug_1(unsigned long int n, int length, unsigned long int mask)
 {
-    printf("Length of %lu (number) is %i ", number, (numLength + 1));
-    printf("and bitMask (original value 1) ");
-    printf("is %lu based ", bitMask);
-    printf("on [length of number - 1] == %i.\n\n", numLength);
+	printf("Length of %lu (n) is %i ", n, (length + 1));
+	printf("and mask (original value 1) ");
+	printf("is %lu based ", mask);
+	printf("on [length of n - 1] == %i.\n\n", length);
 }
 
-void printNumberMaskAndResult(unsigned long int number, unsigned long int bitMask)
+
+/**
+ * debug_2 - print debug statements
+ *
+ * @n: value of n
+ * @mask: mask of n
+ *
+ * Return: nothing
+*/
+void debug_2(unsigned long int n, unsigned long int mask)
 {
-    printf("Value of number is %lu, ", number);
-    printf("value of bitMask is %lu and ", bitMask);
-    printf("value of [number & bitMask] is %lu.\n\n", (number & bitMask));
+	printf("Value of n is %lu, ", n);
+	printf("value of mask is %lu and ", mask);
+	printf("value of [n & mask] is %lu.\n\n", (n & mask));
 }
 
-void printShiftedMask(unsigned long int bitMask)
+/**
+ * debug_3 - print debug statements
+ *
+ * @mask: mask of value n
+ *
+ * Return: nothing
+*/
+void debug_3(unsigned long int mask)
 {
-    printf("\nValue of bitMask is %lu after right shifting by one.\n\n", bitMask);
-}
-int calculateLength(unsigned long int number)
-{
-    int length = 0;
-
-    while (number > 0)
-    {
-        #ifdef DEBUG
-        printf("Value of number is %lu before right shifting by one.\n\n", number);
-        #endif
-
-        length++;
-        number >>= 1; /*shift number to the right by 1*/
-
-        #ifdef DEBUG
-        printf("Value of number is %lu after right shifting by one.\n\n", number);
-        #endif
-    }
-
-    length--;
-
-    return (length);
+	printf("\nValue of mask is %lu after right shifting by one.\n\n", mask);
 }
 
+/**
+ * _length - find the length of @n
+ *
+ * @n: value to find its length
+ *
+ * Return: length
+*/
+int _length(unsigned long int n)
+{
+	int length = 0;
+
+	while (n > 0)
+	{
+		#ifdef DEBUG
+		printf("Value of n is %lu before right shifting by one.\n\n", n);
+		#endif
+
+		length++;
+		n >>= 1; /*shift n to the right by 1*/
+
+		#ifdef DEBUG
+		printf("Value of n is %lu after right shifting by one.\n\n", n);
+		#endif
+	}
+
+	length--;
+
+	return (length);
+}
+
+/**
+ * print_binary - a function that converts a decimal to binary
+ *
+ * @n: decimal number to convert
+ *
+ * Return: nothing
+*/
 void print_binary(unsigned long int n)
 {
-    int length;
-    unsigned long int mask = 1;
+	int length;
+	unsigned long int mask = 1;
 
-    length = calculateLength(n);
+	length = _length(n);
 
-    if (length > 0) /*create mask based on length of number*/
-        mask <<= length; /*shift mask to the left by length*/
-    #ifdef DEBUG
-    printDebug1(n, length, mask);
-    #endif
+	if (length > 0) /*create mask based on length of number*/
+		mask <<= length; /*shift mask to the left by length*/
+	#ifdef DEBUG
+	debug_1(n, length, mask);
+	#endif
 
-    while (mask > 0)
-    {
-        #ifdef DEBUG
-        printDebug2(n, mask);
-        #endif
+	while (mask > 0)
+	{
+		#ifdef DEBUG
+		debug_2(n, mask);
+		#endif
 
-        if (n & mask) /*if number & mask == 1 print 1*/
-            _putchar('1');
-        else /*else if number & mask == 0 print 0*/
-            _putchar('0');
+		if (n & mask) /*if n & mask == 1 print 1*/
+			_putchar('1');
+		else /*else if n & mask == 0 print 0*/
+			_putchar('0');
 
-        mask >>= 1; /*shift mask to the right by 1*/
+		mask >>= 1; /*shift mask to the right by 1*/
 
-        #ifdef DEBUG
-        printDebug3(mask);
-        #endif
-    }
+		#ifdef DEBUG
+		debug_3(mask);
+		#endif
+	}
 }
