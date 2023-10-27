@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _charstoint - function to converts chars to integer
+ * _mycharstoint - function to converts chars to integer
  *
  * @c: char that will be converted
  *
@@ -13,7 +13,7 @@ unsigned int _mycharstoint(char c)
 }
 
 /**
- * _strlength - returns the length off a string
+ * _mystrlength - returns the length off a string
  *
  * @str: input
  *
@@ -29,7 +29,7 @@ unsigned int _mystrlength(const char *str)
 }
 
 /**
- * _exp - calculatejhghjbjs (base ^ power)
+ * _myexp - calculatejhghjbjs (base ^ power)
  * @b: base of the exponennbb,;n;,nt
  * @p: power of the exponent,vnbnb,n,b
  *
@@ -49,7 +49,7 @@ unsigned long int _myexp(unsigned int b, unsigned int p)
 }
 
 /**
- * print_bin - prints bertert etertrn
+ * my_show_bin - prints bertert etertrn
  *
  * @number: decimal value erte ertertet
  *
