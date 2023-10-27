@@ -1,72 +1,75 @@
 #include "main.h"
 
-void print_debug_statements_1(unsigned long int number, int number_length, unsigned long int number_mask)
+void printLengthAndMask(unsigned long int number, int numLength, unsigned long int bitMask)
 {
-	printf("Length of %lu (number) is %i ", number, (number_length + 1));
-	printf("and mask (original value 1) ");
-	printf("is %lu based ", number_mask);
-	printf("on [length of number - 1] == %i.\n\n", number_length);
+    printf("Length of %lu (number) is %i ", number, (numLength + 1));
+    printf("and bitMask (original value 1) ");
+    printf("is %lu based ", bitMask);
+    printf("on [length of number - 1] == %i.\n\n", numLength);
 }
 
-void print_debug_statements_2(unsigned long int number, unsigned long int number_mask)
+void printNumberMaskAndResult(unsigned long int number, unsigned long int bitMask)
 {
-	printf("Value of number is %lu, ", number);
-	printf("value of mask is %lu and ", number_mask);
-	printf("value of [number & mask] is %lu.\n\n", (number & number_mask));
+    printf("Value of number is %lu, ", number);
+    printf("value of bitMask is %lu and ", bitMask);
+    printf("value of [number & bitMask] is %lu.\n\n", (number & bitMask));
 }
 
-void print_debug_statements_3(unsigned long int number_mask)
+void printShiftedMask(unsigned long int bitMask)
 {
-	printf("\nValue of mask is %lu after right shifting by one.\n\n", number_mask);
+    printf("\nValue of bitMask is %lu after right shifting by one.\n\n", bitMask);
+}
+int calculateLength(unsigned long int number)
+{
+    int length = 0;
+
+    while (number > 0)
+    {
+        #ifdef DEBUG
+        printf("Value of number is %lu before right shifting by one.\n\n", number);
+        #endif
+
+        length++;
+        number >>= 1; /*shift number to the right by 1*/
+
+        #ifdef DEBUG
+        printf("Value of number is %lu after right shifting by one.\n\n", number);
+        #endif
+    }
+
+    length--;
+
+    return (length);
 }
 
-int calculate_length(unsigned long int number)
+void print_binary(unsigned long int n)
 {
-	int number_length = 0;
+    int length;
+    unsigned long int mask = 1;
 
-	while (number > 0)
-	{
-		#ifdef DEBUG
-		printf("Value of number is %lu before right shifting by one.\n\n", number);
-		#endif
+    length = calculateLength(n);
 
-		number_length++;
-		number >>= 1; /*shift number to the right by 1*/
+    if (length > 0) /*create mask based on length of number*/
+        mask <<= length; /*shift mask to the left by length*/
+    #ifdef DEBUG
+    printDebug1(n, length, mask);
+    #endif
 
-		#ifdef DEBUG
-		printf("Value of number is %lu after right shifting by one.\n\n", number);
-		#endif
-	}
+    while (mask > 0)
+    {
+        #ifdef DEBUG
+        printDebug2(n, mask);
+        #endif
 
-	number_length--;
+        if (n & mask) /*if number & mask == 1 print 1*/
+            _putchar('1');
+        else /*else if number & mask == 0 print 0*/
+            _putchar('0');
 
-	return (number_length);
+        mask >>= 1; /*shift mask to the right by 1*/
+
+        #ifdef DEBUG
+        printDebug3(mask);
+        #endif
+    }
 }
-
-void convert_to_binary(unsigned long int number)
-{
-	int number_length;
-	unsigned long int number_mask = 1;
-
-	number_length = calculate_length(number);
-
-	if (number_length > 0) /*create mask based on length of number*/
-		number_mask <<= number_length; /*shift mask to the left by length*/
-	#ifdef DEBUG
-	print_debug_statements_1(number, number_length, number_mask);
-	#endif
-
-	while (number_mask > 0)
-	{
-		#ifdef DEBUG
-		print_debug_statements_2(number, number_mask);
-		#endif
-
-		if (number & number_mask) /*if number & number_mask == 1 print 1*/
-			_putchar('1');
-		else /*else if number & number_mask == 0 print 0*/
-			_putchar('0');
-
-		number_mask >>= 1; /*shift number_mask to the right by 1*/
-
-		#ifdef DEBUG
