@@ -1,11 +1,5 @@
 #include "main.h"
 
-/*
- * Description - this is a version With Debug Option, this won't work
- *		with the checker copy go to the readme and click
- *		checker version that one will work with the checker.
-*/
-
 /**
  * debug_1 - print debug statements
  *
