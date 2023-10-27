@@ -1,24 +1,25 @@
 #include "main.h"
 
 /**
- * print_binary - phjvjhvkjvk hjvvjhgvh gvhtion
- * of a number.
- * @n: unsigned long int.
- *
- * Return: no return.
- */
+* print_binary - phjvjhvkjvk hjvvjhgvh gvhtion
+* of a number.
+* @n: unsigned long int.
+*
+* Return: no return.
+*/
 void print_binary(unsigned long int n)
 {
-	unsigned long int zero = 0;
-	n += zero;
-	if (n >> 0)
-	{
-		if (n >> 1)
-			print_binary(n >> 1);
-		_putchar((n & 1) + '0');
-	}
-	else
-	{
-		_putchar('0');
-	}
+unsigned long int zero = 0;
+
+n += zero;
+if (n >> 0)
+{
+if (n >> 1)
+print_binary(n >> 1);
+_putchar((n & 1) + '0');
+}
+else
+{
+_putchar('0');
+}
 }
