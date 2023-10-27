@@ -39,7 +39,7 @@ unsigned int get_string_length(const char *str)
  *         that is not 0 or 1 or when
  *         @b is null
 */
-unsigned int binary_string_to_uint(const char *b)
+unsigned int binary_to_uint(const char *b)
 {
 	int position;
 	unsigned int final_result = 0, base2 = 1,  digit = 0;
