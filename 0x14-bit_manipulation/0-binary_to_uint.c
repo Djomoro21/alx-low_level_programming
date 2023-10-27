@@ -1,35 +1,35 @@
 #include "main.h"
 
 /**
- * _atoi - converts chars to integer
+ * char_to_int - converts chars to integer
  *
  * @c: char to convert
  *
  * Return: converted integer
 */
-unsigned int _atoi(char c)
+unsigned int char_to_int(char c)
 {
 	return ((unsigned int) c - '0');
 }
 
 /**
- * _strlen - gets the length of a string
+ * get_string_length - gets the length of a string
  *
  * @str: string input
  *
  * Return: string length
 */
-unsigned int _strlen(const char *str)
+unsigned int get_string_length(const char *str)
 {
-	unsigned int index = 0;
+	unsigned int count = 0;
 
-	while (str[index] != '\0')
-		index++;
-	return (index);
+	while (str[count] != '\0')
+		count++;
+	return (count);
 }
 
 /**
- * binary_to_uint - a function that converts a binary number
+ * binary_string_to_uint - a function that converts a binary number
  *                  to an unsigned int
  *
  * @b: string that contains 0 and 1 characters
@@ -41,38 +41,38 @@ unsigned int _strlen(const char *str)
 */
 unsigned int binary_to_uint(const char *b)
 {
-	int index;
-	unsigned int result = 0, base2 = 1,  num = 0;
+	int position;
+	unsigned int final_result = 0, base2 = 1,  digit = 0;
 
 	/*if b is NULL return 0*/
 	if (b == NULL)
 		return (0);
 
 	#ifdef DEBUG /*print debug statement*/
-	printf("String is %s, and length is %u.\n", b, _strlen(b));
+	printf("String is %s, and length is %u.\n", b, get_string_length(b));
 	#endif
 
 	/*iterate through string*/
-	for (index = _strlen(b) - 1; index >= 0; index--)
+	for (position = get_string_length(b) - 1; position >= 0; position--)
 	{
-		num = _atoi(b[index]); /*convert char to number*/
+		digit = char_to_int(b[position]); /*convert char to number*/
 
 		#ifdef DEBUG /*print debug statements*/
-		printf("Number is %u, index is %i and base is %u.\n\n", num, index, base2);
+		printf("Number is %u, position is %i and base is %u.\n\n", digit, position, base2);
 		#endif
 
 		/*if number is not 0 or 1 return 0*/
-		if (num != 0 && num != 1)
+		if (digit != 0 && digit != 1)
 			return (0);
 
-		result += num * base2; /*enable debug to see it in action*/
+		final_result += digit * base2; /*enable debug to see it in action*/
 		base2 *= 2;
 
 		#ifdef DEBUG /*print debug statements*/
-		printf("Result is %u.\n", result);
+		printf("Result is %u.\n", final_result);
 		#endif
 	}
 
-	return (result);
+	return (final_result);
 
 }
