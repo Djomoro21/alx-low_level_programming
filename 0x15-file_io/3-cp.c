@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 	clos = close(file_to);
 	if (clos == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
 		exit(100);
 	}
 	return (0);
