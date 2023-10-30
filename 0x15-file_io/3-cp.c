@@ -29,9 +29,10 @@ void my_exit(int file_in, int file_out, char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	int file_in, file_out, err_close;
-	ssize_t nchars, nwr;
-	char buf[1024];
+	int file_in
+	int file_out, close_in_out;
+	ssize_t num, read_stats;
+	char buffer[1024];
 
 	if (argc != 3)
 	{
@@ -43,26 +44,26 @@ int main(int argc, char *argv[])
 	file_out = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 	my_exit(file_in, file_out, argv);
 
-	nchars = 1024;
-	while (nchars == 1024)
+	num = 1024;
+	while (num == 1024)
 	{
-		nchars = read(file_in, buf, 1024);
-		if (nchars == -1)
+		num = read(file_in, buffer, 1024);
+		if (num == -1)
 			my_exit(-1, 0, argv);
-		nwr = write(file_out, buf, nchars);
-		if (nwr == -1)
+		read_stats = write(file_out, buffer, num);
+		if (read_stats == -1)
 			my_exit(0, -1, argv);
 	}
 
-	err_close = close(file_in);
-	if (err_close == -1)
+	close_in_out = close(file_in);
+	if (close_in_out == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
 		exit(100);
 	}
 
-	err_close = close(file_out);
-	if (err_close == -1)
+	close_in_out = close(file_out);
+	if (close_in_out == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
 		exit(100);
