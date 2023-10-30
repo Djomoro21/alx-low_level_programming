@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 {
 	int file_from, file_to, err_close;
 	ssize_t num, stats;
-	char buf[1024];
+	char my_buff[1024];
 
 	if (argc != 3)
 	{
@@ -46,10 +46,10 @@ int main(int argc, char *argv[])
 	num = 1024;
 	while (num == 1024)
 	{
-		num = read(file_from, buf, 1024);
+		num = read(file_from, my_buff, 1024);
 		if (num == -1)
 			my_exit(-1, 0, argv);
-		stats = write(file_to, buf, num);
+		stats = write(file_to, my_buff, num);
 		if (stats == -1)
 			my_exit(0, -1, argv);
 	}
