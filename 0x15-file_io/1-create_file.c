@@ -10,7 +10,7 @@
 */
 int create_file(const char *filename, char *text_content)
 {
-	int my_fd, wrs, wcount;
+	int my_fd, wrs, wcount = 0;
 
 	if (!filename) /*chvbjhbvjh, vgjvhgvh ghchfcfgcgnt*/
 		return (-1);
@@ -29,9 +29,7 @@ int create_file(const char *filename, char *text_content)
 		wrs = write(my_fd, text_content, wcount);
 		if (wrs == -1) /*chjhvbv gvghvhg gvvhgv jkgghhgess*/
 			return (-1);
-	}else
-		text_content = "";
-
+	}
 	close(my_fd); /*cbgjhbhj hvghfvghle*/
 	return (1);
 }
