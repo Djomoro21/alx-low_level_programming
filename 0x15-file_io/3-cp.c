@@ -2,14 +2,14 @@
 
 /**
  * my_exit - checks if files can be opened.
- * @file_from: file_from.
+ * @file_in: file_in.
  * @file_to: file_to.
  * @argv: arguments vector.
  * Return: no return.
  */
-void my_exit(int file_from, int file_to, char *argv[])
+void my_exit(int file_in, int file_to, char *argv[])
 {
-	if (file_from == -1)
+	if (file_in == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
@@ -29,24 +29,24 @@ void my_exit(int file_from, int file_to, char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	int file_from, file_to, clos;
+	int file_in, file_to, clos;
 	ssize_t num, stats;
 	char my_buff[1024];
 
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_in file_to");
 		exit(97);
 	}
 
-	file_from = open(argv[1], O_RDONLY);
+	file_in = open(argv[1], O_RDONLY);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	my_exit(file_from, file_to, argv);
+	my_exit(file_in, file_to, argv);
 
 	num = 1024;
 	while (num == 1024)
 	{
-		num = read(file_from, my_buff, 1024);
+		num = read(file_in, my_buff, 1024);
 		if (num == -1)
 			my_exit(-1, 0, argv);
 		stats = write(file_to, my_buff, num);
@@ -54,17 +54,17 @@ int main(int argc, char *argv[])
 			my_exit(0, -1, argv);
 	}
 
-	clos = close(file_from);
+	clos = close(file_in);
 	if (clos == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
 		exit(100);
 	}
 
 	clos = close(file_to);
 	if (clos == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
 		exit(100);
 	}
 	return (0);
