@@ -30,15 +30,14 @@ int __exit(int error, char *str, int fd)
 			return (0);
 	}
 }
-
 /**
- * my_err_fun - checks if files can be opened.
+ * error_file - checks if files can be opened.
  * @file_from: file_from.
  * @file_to: file_to.
  * @argv: arguments vector.
  * Return: no return.
  */
-void my_err_fun(int file_from, int file_to, char *argv[])
+void error_file(int file_from, int file_to, char *argv[])
 {
 	if (file_from == -1)
 	{
@@ -51,49 +50,50 @@ void my_err_fun(int file_from, int file_to, char *argv[])
 		exit(99);
 	}
 }
-
 /**
- * main - check the code for Holberton School students.
- * @argc: number of arguments.
- * @argv: arguments vector.
- * Return: Always 0.
- */
+ * main - create a copy of file
+ *
+ * @argc: argument counter
+ * @argv: argument vector
+ *
+ * Return: 0 for success.
+*/
 int main(int argc, char *argv[])
 {
-	int file_from, file_to, err_close_in, err_close_out;
-	ssize_t nchars, nwr;
-	char buf[1024];
+	int file_in, file_out;
+	int read_stat, write_stat;
+	int close_in, close_out;
+	char buffer[1024];
 
+	/*if arguments are not 3*/
 	if (argc != 3)
-	{
 		__exit(97, NULL, 0);
-	}
 
-	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	my_err_fun(file_from, file_to, argv);
+	/*sets file descriptor for copy from file*/
+	file_in = open(argv[1], O_RDONLY);
+	/*sets file descriptor for copy to file*/
+	file_out = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	error_file(file_in, file_out, argv);
 
-	nchars = 1024;
-	while (nchars == 1024)
+	/*reads file_in as long as its not NULL*/
+	while ((read_stat = read(file_in, buffer, MAXSIZE)) != 0)
 	{
-		nchars = read(file_from, buf, 1024);
-		if (nchars == -1)
-			my_err_fun(-1, 0, argv);
-		nwr = write(file_to, buf, nchars);
-		if (nwr == -1)
-			my_err_fun(0, -1, argv);
+		if (read_stat == -1)
+			__exit(98, argv[1], 0);
+
+		/*copy and write contents to file_out*/
+		write_stat = write(file_out, buffer, read_stat);
+		if (write_stat == -1)
+			__exit(99, argv[2], 0);
 	}
 
-	err_close_in = close(file_from);
-	if (err_close_in == -1)
-	{
-		__exit(100, NULL, file_from);
-	}
+	close_in = close(file_in); /*close file_in*/
+	if (close_in == -1)
+		__exit(100, NULL, file_in);
 
-	err_close_out = close(file_to);
-	if (err_close_out == -1)
-	{
-		__exit(100, NULL, file_to);
-	}
+	close_out = close(file_out); /*close file_out*/
+	if (close_out == -1)
+		__exit(100, NULL, file_out);
+
 	return (0);
 }
