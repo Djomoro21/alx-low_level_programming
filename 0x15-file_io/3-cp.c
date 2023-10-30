@@ -3,18 +3,18 @@
 /**
  * my_exit - checks if files can be opened.
  * @file_in: file_from.
- * @file_to: file_to.
+ * @file_out: file_to.
  * @argv: arguments vector.
  * Return: no return.
  */
-void my_exit(int file_in, int file_to, char *argv[])
+void my_exit(int file_in, int file_out, char *argv[])
 {
 	if (file_in == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	if (file_to == -1)
+	if (file_out == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
@@ -29,7 +29,7 @@ void my_exit(int file_in, int file_to, char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	int file_in, file_to, clos;
+	int file_in, file_out, clos;
 	ssize_t num, stats;
 	char my_buff[1024];
 
@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 	}
 
 	file_in = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	my_exit(file_in, file_to, argv);
+	file_out = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+	my_exit(file_in, file_out, argv);
 
 	num = 1024;
 	while (num == 1024)
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		num = read(file_in, my_buff, 1024);
 		if (num == -1)
 			my_exit(-1, 0, argv);
-		stats = write(file_to, my_buff, num);
+		stats = write(file_out, my_buff, num);
 		if (stats == -1)
 			my_exit(0, -1, argv);
 	}
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 		exit(100);
 	}
 
-	clos = close(file_to);
+	clos = close(file_out);
 	if (clos == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
