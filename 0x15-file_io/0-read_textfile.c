@@ -16,7 +16,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t nrd, nwr;
 	char *buff;
 
-	if (filename == NULL) /*check if file is present*/
+	if (!filename) /*check if file is present*/
 		return (0);
 
 	file = open(filename, O_RDONLY); /*open file*/
