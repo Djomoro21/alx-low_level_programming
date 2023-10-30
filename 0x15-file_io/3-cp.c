@@ -76,10 +76,10 @@ int main(int argc, char *argv[])
 	{
 		nchars = read(file_in, buf, 1024);
 		if (nchars == -1)
-			__exit(98, argv[1], 0);
+			error_file(-1, 0, argv);
 		nwr = write(file_out, buf, nchars);
 		if (nwr == -1)
-			__exit(99, argv[2], 0);
+			error_file(0, -1, argv);
 	}
 
 	err_close = close(file_in);
