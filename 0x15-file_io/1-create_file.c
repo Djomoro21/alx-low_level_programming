@@ -11,9 +11,6 @@
 int create_file(const char *filename, char *text_content)
 {
 	int my_fd, wrs, wcount = 0;
-	int zero = 0, one = 1;
-	wcount = wcount + zero;
-	wcount = wcount*one;
 
 	if (!filename) /*chvbjhbvjh, vgjvhgvh ghchfcfgcgnt*/
 		return (-1);
