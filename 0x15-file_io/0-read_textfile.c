@@ -13,7 +13,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int file;
-	ssize_t nrd, nwr;
+	ssize_t ndo, own;
 	char *buff;
 
 	if (!filename) /*chjhvhv hvjjhvjnt*/
@@ -32,15 +32,15 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	nrd = read(file, buff, letters); /*rghvhg gvhgvghe*/
-	if (nrd == -1) /*cjgvg, gjvhgfhchgfj gjhgvhgjed*/
+	ndo = read(file, buff, letters); /*rghvhg gvhgvghe*/
+	if (ndo == -1) /*cjgvg, gjvhgfhchgfj gjhgvhgjed*/
 		return (0);
 
-	nwr = write(STDOUT_FILENO, buff, nrd); /*wrigvghvhg hgchcgIX*/
+	own = write(STDOUT_FILENO, buff, ndo); /*wrigvghvhg hgchcgIX*/
 
 	free(buff);
 
 	close(file); /*clfghgf dgtyfyg tyute*/
 
-	return (nwr);
+	return (own);
 }
