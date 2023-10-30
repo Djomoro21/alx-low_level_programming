@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
 	file_in = open(argv[1], O_RDONLY);
 	file_out = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	error_file(file_from, file_to, argv);
+	error_file(file_in, file_out, argv);
 
 
 	nchars = 1024;
