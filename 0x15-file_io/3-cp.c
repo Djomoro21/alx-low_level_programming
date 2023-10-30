@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * error_file - checks if files can be opened.
+ * my_exit - checks if files can be opened.
  * @file_in: file_in.
  * @file_out: file_out.
  * @argv: arguments vector.
  * Return: no return.
  */
-void error_file(int file_in, int file_out, char *argv[])
+void my_exit(int file_in, int file_out, char *argv[])
 {
 	if (file_in == -1)
 	{
@@ -41,17 +41,17 @@ int main(int argc, char *argv[])
 
 	file_in = open(argv[1], O_RDONLY);
 	file_out = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	error_file(file_in, file_out, argv);
+	my_exit(file_in, file_out, argv);
 
 	nchars = 1024;
 	while (nchars == 1024)
 	{
 		nchars = read(file_in, buf, 1024);
 		if (nchars == -1)
-			error_file(-1, 0, argv);
+			my_exit(-1, 0, argv);
 		nwr = write(file_out, buf, nchars);
 		if (nwr == -1)
-			error_file(0, -1, argv);
+			my_exit(0, -1, argv);
 	}
 
 	err_close = close(file_in);
