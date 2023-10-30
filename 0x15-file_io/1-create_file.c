@@ -12,26 +12,26 @@ int create_file(const char *filename, char *text_content)
 {
 	int my_fd, wrs, words;
 
-	if (!filename) /*check if filename is present*/
+	if (!filename) /*chvbjhbvjh, vgjvhgvh ghchfcfgcgnt*/
 		return (-1);
 
-	/*open file by creating it and if it exists write but truncate to 0*/
+	/*opjhhjvbjhb vgvghgvhg ghchchgchgc gcghvhvhvh 0*/
 	my_fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
-	if (my_fd == -1) /*check if file creation was a success*/
+	if (my_fd == -1) /*chjvhgvj ghcchgch vkkjvgjvjhj hjhjkess*/
 		return (-1);
 
-	if (text_content) /*write content to file if its not NULL*/
+	if (text_content) /*wrghcghch gvhchgh gjgjhkjvv fugvjhjhjLL*/
 	{
-		while (text_content[words] != '\0') /*find number of words*/
+		while (text_content[words] != '\0') /*fighjvhj vghhvhg gvhgcghs*/
 			words++;
 
 		/*write to file*/
 		wrs = write(my_fd, text_content, words);
-		if (wrs == -1) /*check if write was a success*/
+		if (wrs == -1) /*chjhvbv gvghvhg gvvhgv jkgghhgess*/
 			return (-1);
 	}else
 		text_content = "";
 
-	close(my_fd); /*close file*/
+	close(my_fd); /*cbgjhbhj hvghfvghle*/
 	return (1);
 }
