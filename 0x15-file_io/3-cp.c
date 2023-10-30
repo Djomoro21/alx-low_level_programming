@@ -30,7 +30,7 @@ void my_exit(int file_from, int file_to, char *argv[])
 int main(int argc, char *argv[])
 {
 	int file_from, file_to, err_close;
-	ssize_t num, nwr;
+	ssize_t num, stats;
 	char buf[1024];
 
 	if (argc != 3)
@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
 		num = read(file_from, buf, 1024);
 		if (num == -1)
 			my_exit(-1, 0, argv);
-		nwr = write(file_to, buf, num);
-		if (nwr == -1)
+		stats = write(file_to, buf, num);
+		if (stats == -1)
 			my_exit(0, -1, argv);
 	}
 
