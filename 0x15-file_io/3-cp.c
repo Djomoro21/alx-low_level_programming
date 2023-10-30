@@ -39,17 +39,9 @@ int main(int argc, char *argv[])
 	}
 
 	file_in = open(argv[1], O_RDONLY);
-	if (file_in == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
 	file_out = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	if (file_out == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
+	error_file(file_from, file_to, argv);
+
 
 	nchars = 1024;
 	while (nchars == 1024)
