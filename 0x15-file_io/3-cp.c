@@ -1,5 +1,7 @@
 #include "main.h"
 
+#define MAXSIZE 1024
+
 
 /**
  * __exit - prints error messages and exits with exit number
@@ -30,6 +32,7 @@ int __exit(int error, char *str, int fd)
 			return (0);
 	}
 }
+
 /**
  * main - create a copy of file
  *
@@ -43,7 +46,7 @@ int main(int argc, char *argv[])
 	int file_in, file_out;
 	int read_stat, write_stat;
 	int close_in, close_out;
-	char buffer[1024];
+	char buffer[MAXSIZE];
 
 	/*if arguments are not 3*/
 	if (argc != 3)
