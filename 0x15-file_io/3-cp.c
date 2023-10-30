@@ -71,9 +71,13 @@ int main(int argc, char *argv[])
 
 	/*sets file descriptor for copy from file*/
 	file_in = open(argv[1], O_RDONLY);
+	if (file_in == -1)
+		__exit(98, argv[1], 0);
+
 	/*sets file descriptor for copy to file*/
 	file_out = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-	error_file(file_in, file_out, argv);
+	if (file_out == -1)
+		__exit(99, argv[2], 0);
 
 	/*reads file_in as long as its not NULL*/
 	while ((read_stat = read(file_in, buffer, MAXSIZE)) != 0)
