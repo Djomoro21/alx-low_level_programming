@@ -1,35 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * __exit - prints error messages and exits with exit number
- *
- * @error: either the exit number or file descriptor
- * @str: name of either file_in or file_out
- * @fd: file descriptor
- *
- * Return: 0 on success
-*/
-int __exit(int error, char *str, int fd)
-{
-	switch (error)
-	{
-		case 97:
-			dprintf(STDERR_FILENO, "Usage: cp file_in file_out\n");
-			exit(error);
-		case 98:
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", s);
-			exit(error);
-		case 99:
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", s);
-			exit(error);
-		case 100:
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-			exit(error);
-		default:
-			return (0);
-	}
-}
-/**
  * error_file - checks if files can be opened.
  * @file_in: file_in.
  * @file_out: file_out.
