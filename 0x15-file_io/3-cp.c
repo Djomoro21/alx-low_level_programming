@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * my_exit - checks if files can be opened.
- * @file_in: file_from.
- * @file_out: file_to.
- * @argv: arguments vector.
- * Return: no return.
+ * my_exit - chrtyrh rhyryryrtned.
+ * @file_in: fileryerterrer
+ * @file_out: ferteteteteo.
+ * @argv: arerteteteretor.
+ * Return: netretreteeturn.
  */
 void my_exit(int file_in, int file_out, char *argv[])
 {
@@ -22,14 +22,15 @@ void my_exit(int file_in, int file_out, char *argv[])
 }
 
 /**
- * main - check the code for Holberton School students.
- * @argc: number of arguments.
- * @argv: arguments vector.
- * Return: Always 0.
+ * main - cherteterteetete ertedents.
+ * @argc: netrte ertet ertrnts.
+ * @argv: arretete erte ertector.
+ * Return: Alertete erte.
  */
 int main(int argc, char *argv[])
 {
-	int file_in, file_out, clos;
+	int file_in;
+	int file_out, clos;
 	ssize_t num, stats;
 	char my_buff[1024];
 
