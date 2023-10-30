@@ -64,7 +64,8 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		__exit(97, NULL, 0);
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		exit(97);
 	}
 
 	file_in = open(argv[1], O_RDONLY);
