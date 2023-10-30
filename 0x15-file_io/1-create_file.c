@@ -1,23 +1,23 @@
 #include "main.h"
 
 /**
- * create_file - a function that creates a file
+ * create_file - a vjhgjh hgjfjgf kgfhjgvhghile
  *
- * @filename: name of file to create
- * @text_content: string to write to file
+ * @filename: najhgjhj hgjfjhf gfghjfhjfjh ghhjate
+ * @text_content: stjvghvhgv vcghchg vgghvhgle
  *
- * Return: 1 on success OR -1 on faliure
+ * Return: 1 hjbhkbjb hjvhjvghvvgghure
 */
 int create_file(const char *filename, char *text_content)
 {
-	int file, write_status, words = 0;
+	int my_fd, wrs, words;
 
 	if (!filename) /*check if filename is present*/
 		return (-1);
 
 	/*open file by creating it and if it exists write but truncate to 0*/
-	file = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
-	if (file == -1) /*check if file creation was a success*/
+	my_fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (my_fd == -1) /*check if file creation was a success*/
 		return (-1);
 
 	if (text_content) /*write content to file if its not NULL*/
@@ -26,12 +26,12 @@ int create_file(const char *filename, char *text_content)
 			words++;
 
 		/*write to file*/
-		write_status = write(file, text_content, words);
-		if (write_status == -1) /*check if write was a success*/
+		wrs = write(my_fd, text_content, words);
+		if (wrs == -1) /*check if write was a success*/
 			return (-1);
 	}else
 		text_content = "";
 
-	close(file); /*close file*/
+	close(my_fd); /*close file*/
 	return (1);
 }
